@@ -52,26 +52,26 @@ Salary_Predict/
 │   └── salary_pred.py              # ML training pipeline
 │
 ├── models/                         # Trained models
-│   └── saved_model.pkl             # XGBoost model + artifacts
+│   └── saved_model.pkl             # XGBoost model + artifacts (6MB)
 │
 ├── notebooks/                      # Jupyter notebooks
 │   └── Draft.ipynb                 # EDA and experimentation
 │
-├── data/                           # Data directory (gitignored)
-│   └── (place dataset here)
+├── data/                           # Data directory
+│   └── stack-overflow-developer-survey-2025/
+│       └── survey_results_public.csv   # Dataset (download separately)
 │
 ├── screenshots/                    # Application screenshots
 │   ├── 01_predict_page.png
 │   ├── 02_data_overview.png
 │   ├── 03_salary_analysis.png
-│   ├── 04_technology_stack.png
-│   └── 05_correlation_heatmap.png
+│   └── 04_technology_stack.png
 │
 ├── docs/                           # Documentation
+│   └── PROJECT_DOCUMENTATION.md    # Detailed project documentation
 │
-├── stack-overflow-developer-survey-2025/
-│   └── survey_results_public.csv   # Dataset (download separately)
-│
+├── .venv/                          # Virtual environment (gitignored)
+├── .gitignore                      # Git ignore rules
 ├── run.py                          # Application launcher
 ├── requirements.txt                # Python dependencies
 └── README.md                       # This file
@@ -100,7 +100,7 @@ pip install -r requirements.txt
 
 - Visit [Stack Overflow Survey](https://survey.stackoverflow.co/)
 - Download 2025 survey data
-- Place `survey_results_public.csv` in `stack-overflow-developer-survey-2025/` folder
+- Place `survey_results_public.csv` in `data/stack-overflow-developer-survey-2025/` folder
 
 ### 3. Train Model (Optional)
 
@@ -261,7 +261,6 @@ After training 6 models on **17,679 employed developers** (salary range: $10k-$5
 
 ![Technology Stack](screenshots/04_technology_stack.png)
 *Most popular programming languages, databases, and platforms*
-
 
 ---
 

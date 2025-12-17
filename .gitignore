@@ -14,7 +14,6 @@ ENV/
 # Data files (too large for GitHub)
 data/
 *.csv
-*.pkl
 
 # IDE
 .vscode/
@@ -38,6 +37,8 @@ Thumbs.db
 *.log
 training_log.txt
 
-# Model files (too large)
-models/*.pkl
-saved_model.pkl
+# Ignore all .pkl files by default
+*.pkl
+
+# BUT allow the trained model (exception to the rule above)
+!models/saved_model.pkl

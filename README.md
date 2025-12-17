@@ -309,48 +309,6 @@ After training 6 models on **17,679 employed developers** (salary range: $10k-$5
 
 ---
 
-## 🤝 Contributing
-
-Contributions welcome! Feel free to:
-
-- Report bugs
-- Suggest new features
-- Submit pull requests
-- Improve documentation
-
----
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-**Data Science Portfolio Project**  
-December 2025
-
----
-
-## 🙏 Acknowledgments
-
-- **Stack Overflow** for the comprehensive developer survey data
-- **Streamlit** for the excellent web framework
-- **scikit-learn** and **XGBoost** communities for powerful ML tools
-
----
-
-## 📞 Support
-
-For questions or issues:
-
-- Review the code comments in each file
-- Check the console output for debugging
-- Examine the model training logs
-
----
-
 **⭐ If you find this project useful, please star it!**
 
 **Built with ❤️ using Python, XGBoost, and Streamlit**

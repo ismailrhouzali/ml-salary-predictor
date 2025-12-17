@@ -16,9 +16,32 @@ plt.rcParams['figure.figsize'] = (10, 6)
 def load_data():
     """Load and preprocess the dataset"""
     try:
-        # Update path to data directory
+        # Try to load from local file first (for local development)
         data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'stack-overflow-developer-survey-2025', 'survey_results_public.csv')
-        dfc = pd.read_csv(data_path, low_memory=False)
+        
+        if os.path.exists(data_path):
+            dfc = pd.read_csv(data_path, low_memory=False)
+        else:
+            # Fallback: Download from GitHub LFS URL (for Streamlit Cloud)
+            st.info("📥 Downloading dataset from GitHub (this may take a moment)...")
+            
+            # GitHub raw URL for the CSV file (Git LFS pointer will redirect to actual file)
+            csv_url = "https://media.githubusercontent.com/media/ismailrhouzali/ml-salary-predictor/main/data/stack-overflow-developer-survey-2025/survey_results_public.csv"
+            
+            try:
+                dfc = pd.read_csv(csv_url, low_memory=False)
+                st.success("✅ Dataset loaded successfully from GitHub!")
+            except Exception as e:
+                st.error(f"❌ Failed to download dataset: {str(e)}")
+                st.info("""
+                **Note:** The Explore page requires the full dataset which is too large for standard GitHub.
+                
+                For local development:
+                1. Download the Stack Overflow 2025 survey data
+                2. Place it in `data/stack-overflow-developer-survey-2025/`
+                3. Run the app locally with `python run.py`
+                """)
+                return None
         
         # Rename target column
         dfc = dfc.rename(columns={'ConvertedCompYearly': 'AnnualCompUSD'})
@@ -36,8 +59,8 @@ def load_data():
         dfc = dfc[(dfc['AnnualCompUSD'] >= 10000) & (dfc['AnnualCompUSD'] <= 500000)]
         
         return dfc
-    except FileNotFoundError:
-        st.error("❌ Dataset not found. Please ensure survey_results_public.csv is in the stack-overflow-developer-survey-2025 folder.")
+    except Exception as e:
+        st.error(f"❌ Error loading dataset: {str(e)}")
         return None
 
 def analyze_multi_select_column(series, top_n=15):
